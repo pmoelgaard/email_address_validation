@@ -18,5 +18,5 @@ response = @client.check(email, options)
 
 # If its a success, we print a message to the user
 if ! response.nil?
-  puts 'SUCCESS : Email checked...' << response.length.to_s
+  puts 'SUCCESS : Email checked...' << response.to_s
 end

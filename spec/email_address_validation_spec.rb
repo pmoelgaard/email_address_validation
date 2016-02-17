@@ -1,4 +1,3 @@
-require 'json'
 require 'dotenv'
 require 'spec_helper'
 require 'email_address_validation'
@@ -6,12 +5,6 @@ require 'email_address_validation'
 
 # Load Environment Variables
 Dotenv.load
-
-
-RSpec.configure do |c|
-  # declare an exclusion filter
-  c.filter_run_excluding :ci => ENV['CONTEXT'] == 'travis-ci'
-end
 
 
 describe MailboxLayer do
