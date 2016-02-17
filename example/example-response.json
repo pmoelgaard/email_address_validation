@@ -1,0 +1,14 @@
+{
+  "email": "test@test.com",
+  "did_you_mean": "test@me.com",
+  "user": "test",
+  "domain": "test.com",
+  "format_valid": true,
+  "mx_found": nil,
+  "smtp_check": false,
+  "catch_all": nil,
+  "role": false,
+  "disposable": false,
+  "free": false,
+  "score": 0.32
+}

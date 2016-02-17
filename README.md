@@ -1,8 +1,10 @@
 [![Travis](https://travis-ci.org/pmoelgaard/email_address_validation.svg)](Travis)
 
 # email_address_validation
-Ruby Library for [the screenshotlayer API](https://screenshotlayer.com/).   
-Capture highly customizable snapshots of any website. Powerful Screenshot API for any application
+
+Ruby Library for the mailboxlayer API, a web service that email validation & verification, [https://mailboxlayer.com/](https://mailboxlayer.com/)   
+
+Simple and powerful email verification JSON API using SMTP, typo checks, syntax validation, and free and disposable provider filtering. Free for personal use.
 
 ---
 
@@ -11,7 +13,7 @@ Capture highly customizable snapshots of any website. Powerful Screenshot API fo
 Add this line to your application's Gemfile:
 
 ```
-gem 'screenshot_capture'
+gem 'email_address_validation'
 
 ```
 
@@ -25,7 +27,7 @@ $ bundle
 Or install it yourself as:
 
 ```
-$ gem install screenshot_capture
+$ gem install email_address_validation
 
 ```
 
@@ -33,21 +35,21 @@ $ gem install screenshot_capture
 
 ## Configuration
 
-Before using the screenshotlayer API client you have to setup your account and obtain your API Access Key.  
-You can get it by signing up at [https://screenshotlayer.com/product](https://screenshotlayer.com/product).
+Before using the mailboxlayer API client you have to setup your account and obtain your API Access Key.  
+You can get it by signing up at [https://mailboxlayer.com/product](https://mailboxlayer.com/product).
 
 ---
 
 ## API Overview
 All endpoints in the public API is available through this library.
 
-- capture
+- check
 
 ---
 
 ## Usage
 
-The general API is documented here: [https://pdflayer.com/documentation](https://screenshotlayer.com/documentation).  
+The general API is documented here: [https://mailboxlayer.com/documentation](https://mailboxlayer.com/documentation).  
 You can find parameters, result set definitions and status codes documented here as well.
 
 In the examples directory you can find demos and samples of general usage of all the API functions.
@@ -55,17 +57,14 @@ In the examples directory you can find demos and samples of general usage of all
 ### Setup
 
 ```
-@client = ScreenshotLayer::Client.new( [access_key], [secret_keyword] )
+@client = MailboxLayer::Client.new( [access_key] )
 
 ```
 
 #### Required Parameters
 
 ###### access_key
-Your unique key that you can find on the dashboard of your account under the screenshotlayer account.
-
-###### secret_key
-A userdefined private key that you can find on the dashboard of your account under the screenshotlayer account, it's used to encrypt parameters to prevent unauthorised usage of your account.
+Your unique key that you can find on the dashboard of your account under the mailboxlayer account.
 
 #### Optional Parameters
 
@@ -74,66 +73,47 @@ Boolean value to indicate if the calls to the API should use a secure protocol o
 
 ---
 
-## Convert (simple case)
+## Check (simple case)
 
 Takes a URL and returns the captured image.
 
 ###### Define Query
 Second we define an options object.
-All the options are documented here: [https://screenshotlayer.com/documentation](https://screenshotlayer.com/documentation)
+All the options are documented here: [https://mailboxlayer.com/documentation](https://mailboxlayer.com/documentation)
 
 ```
-options = ScreenshotLayer::CaptureOptions.new()
+options = MailboxLayer::CheckOptions.new()
 
 ```
 
 ###### Call Client
-We then place the actual call to the API, passing in the URL we wish to capture as PDF and the options we defined above.
+We then place the actual call to the API, passing in the email we wish to check and the options we defined above.
 
 ```
-response = @client.capture(url, options)
+response = @client.check( [email] [, options] )
 
 ``` 
 
 ###### Response
 
-```
-[The binary content of the image file] (Defaults to PNG)
+If we pass the email ```test@test.com``` as the email argument above, we get the following result:
 
-```
-
----
-
-## Capture (w. filename)
-
-Takes a URL, saves the image to a local file defined by the export argument and returns a response object.
-
-###### Define Query
-
-We define an options object, and sets the ```filename``` option.
-This option is specific to the RubyGem and not documented in the API found on screenshotlayer.
-If the directory doesn't exist, it will be created.
-
-```
-options = ScreenshotLayer::CaptureOptions.new()
-options.filename = '[local_file_system]/some_directory]/my_file.png'
-
-```
-
-###### Simple Request (using Callback)
-
-```
-response = @client.capture(url, options)
-
-```
-
-###### Response
 ```
 {
-	"success": true,
-    "info": "The image has been saved to your local file system",
-    "file_name": "path_to_local_file.png"
+  "email": "test@test.com",
+  "did_you_mean": "test@me.com",
+  "user": "test",
+  "domain": "test.com",
+  "format_valid": true,
+  "mx_found": nil,
+  "smtp_check": false,
+  "catch_all": nil,
+  "role": false,
+  "disposable": false,
+  "free": false,
+  "score": 0.32
 }
+
 ```
 
 ---
@@ -155,8 +135,6 @@ In order to run the tests, the following environment variables needs to be set:
 
 ```
 ACCESS_KEY = [access_key]
-SECRET_KEYWORD = [secret_keyword]
-EXPORT_FTP = [path_to_ftp_account]
 ```
 
 
@@ -164,7 +142,7 @@ EXPORT_FTP = [path_to_ftp_account]
 
 ## Customer Support
 
-Need any assistance? [Get in touch with Customer Support](mailto:support@apilayer.net?subject=%screenshotlayer%5D).
+Need any assistance? [Get in touch with Customer Support](mailto:support@apilayer.net?subject=%mailboxlayer%5D).
 
 ---
 
