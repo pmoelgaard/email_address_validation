@@ -7,7 +7,7 @@ require 'email_address_validation/version'
 
 Gem::Specification.new do |spec|
 
-  spec.name = "email_address_validation"
+  spec.name = "emailvalidation"
   spec.version = MailboxLayer::VERSION
   spec.platform = Gem::Platform::RUBY
   spec.authors = ["Peter Andreas Moelgaard"]

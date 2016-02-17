@@ -1,6 +1,6 @@
 [![Travis](https://travis-ci.org/pmoelgaard/email_address_validation.svg)](Travis)
 
-# email_address_validation
+# emailvalidation
 
 Ruby Library for the mailboxlayer API, a web service that email validation & verification, [https://mailboxlayer.com/](https://mailboxlayer.com/)   
 
@@ -13,7 +13,7 @@ Simple and powerful email verification JSON API using SMTP, typo checks, syntax 
 Add this line to your application's Gemfile:
 
 ```
-gem 'email_address_validation'
+gem 'emailvalidation'
 
 ```
 
@@ -27,7 +27,7 @@ $ bundle
 Or install it yourself as:
 
 ```
-$ gem install email_address_validation
+$ gem install emailvalidation
 
 ```
 
@@ -55,6 +55,15 @@ You can find parameters, result set definitions and status codes documented here
 In the examples directory you can find demos and samples of general usage of all the API functions.
 
 ### Setup
+
+First we require the module
+
+```
+require 'emailvalidation'
+
+```
+
+Second we instantiate the client
 
 ```
 @client = MailboxLayer::Client.new( [access_key] )
